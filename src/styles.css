@@ -1,0 +1,79 @@
+.card {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+  border: none;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-family: "Urbanist", sans-serif;
+}
+
+/* need to make bottom row of days responsive
+ */
+.search {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1;
+}
+
+.searchbar {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 10px;
+  border: #fff;
+  border-radius: 50px;
+  width: 80%;
+}
+
+button {
+  border: #fff;
+  background: #fff;
+  padding: 15px 10px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+.description {
+  padding-top: 15px;
+}
+
+.humidity {
+  margin-top: 30px;
+}
+.main-date {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.main-weather {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1;
+}
+
+.weathericon-large {
+  font-size: 80px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.temp {
+  font-size: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weather-icon {
+  font-size: 50px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.weekdays {
+  display: block;
+  margin: 0 auto;
+}
