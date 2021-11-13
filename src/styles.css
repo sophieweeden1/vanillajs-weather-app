@@ -73,10 +73,15 @@ button {
   margin-bottom: 10px;
 }
 
-.weekdays {
-  display: block;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.forecast-column {
+  text-align: center;
   margin: 0 auto;
 }
+
 .github {
   text-align: center;
 }
