@@ -71,7 +71,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchPosition);
 }
 
-let locationButton = document.querySelector("location-button");
+let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocation);
 
 /*C and F buttons functionality
