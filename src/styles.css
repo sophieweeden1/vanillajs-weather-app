@@ -39,6 +39,7 @@ button {
 
 .description {
   padding-top: 15px;
+  text-transform: capitalize;
 }
 
 .humidity {

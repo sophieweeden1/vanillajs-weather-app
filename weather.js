@@ -25,12 +25,18 @@ title.innerHTML = `${day}, ${hour}:${minutes}`;
 
 function displayWeather(response) {
   //Update main city name
+  console.log(response.data);
   let cityName = document.querySelector("#city");
   cityName.innerHTML = response.data.name;
   //Update current temperature in C
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
   mainTempDisplay.innerHTML = `${actualTemp}`;
+  //Update weather icon
+  let iconCode = response.data.weather[0].icon;
+  let mainIcon = document.querySelector("#main-weather-icon");
+  mainIcon.src = `https://openweathermap.org/img/w/${iconCode}.png`;
+
   //Update description
   let apiDescription = response.data.weather[0].description;
   let description = document.querySelector(".description");
@@ -46,6 +52,7 @@ let apiKey = "1ba1100ec11f44947f639237235127ac";
 let units = "metric";
 let url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=${units}`;
 axios.get(url).then(displayWeather);
+
 //Adds user's city input to the page + fetch weather info from API
 
 function displayUserWeather(response) {
@@ -56,6 +63,10 @@ function displayUserWeather(response) {
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
   mainTempDisplay.innerHTML = `${actualTemp}`;
+  //Update weather icon
+  let iconCode = response.data.weather[0].icon;
+  let mainIcon = document.querySelector("#main-weather-icon");
+  mainIcon.src = `https://openweathermap.org/img/w/${iconCode}.png`;
   //Update description
   let apiDescription = response.data.weather[0].description;
   let description = document.querySelector(".description");
@@ -99,7 +110,7 @@ function getCurrentLocation(event) {
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocation);
 
-// C and F buttons conversion functionality
+// Celcius and Fahrenheit buttons conversion functionality
 
 function changeToC(event) {
   event.preventDefault();
