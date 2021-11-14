@@ -21,9 +21,34 @@ if (minutes < 10) {
 let title = document.querySelector(".main-date");
 title.innerHTML = `${day}, ${hour}:${minutes}`;
 
-//Adds user's city input to the page + fetch weather info from API
+//Displays weather for London on page load
 
 function displayWeather(response) {
+  //Update main city name
+  let cityName = document.querySelector("#city");
+  cityName.innerHTML = response.data.name;
+  //Update current temperature in C
+  let actualTemp = Math.round(response.data.main.temp);
+  let mainTempDisplay = document.querySelector("#actual-temp");
+  mainTempDisplay.innerHTML = `${actualTemp}`;
+  //Update description
+  let apiDescription = response.data.weather[0].description;
+  let description = document.querySelector(".description");
+  description.innerHTML = `${apiDescription}`;
+  //Update humidity
+  let humidityDisplay = document.querySelector(".humidity");
+  humidityDisplay.innerHTML = `Humidity: ${response.data.main.humidity} %`;
+  //Update Wind
+  let windDisplay = document.querySelector(".wind");
+  windDisplay.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
+}
+let apiKey = "1ba1100ec11f44947f639237235127ac";
+let units = "metric";
+let url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=${units}`;
+axios.get(url).then(displayWeather);
+//Adds user's city input to the page + fetch weather info from API
+
+function displayUserWeather(response) {
   //Update main city name
   let cityName = document.querySelector("#city");
   cityName.innerHTML = response.data.name;
@@ -51,7 +76,7 @@ function search(event) {
   let city = document.querySelector("#userinput").value;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-  axios.get(url).then(displayWeather);
+  axios.get(url).then(displayUserWeather);
 }
 let submitButton = document.querySelector("#submit-button");
 submitButton.addEventListener("click", search);
@@ -74,19 +99,18 @@ function getCurrentLocation(event) {
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocation);
 
-/*C and F buttons functionality
+// C and F buttons conversion functionality
 
 function changeToC(event) {
   event.preventDefault();
-  units = "metric";
 }
 
 function changeToF(event) {
   event.preventDefault();
-  units = "imperial";
+  mainTempDisplay.innerHTML.value * 1.8 + 32;
 }
-let celciusButton = document.querySelector(".celcius");
+let celciusButton = document.querySelector("#celcius");
 celciusButton.addEventListener("click", changeToC);
 
-let fahrenheitButton = document.querySelector(".fahrenheit");
-fahrenheitButton.addEventListener("click", changeToF); */
+let fahrenheitButton = document.querySelector("#fahrenheit");
+fahrenheitButton.addEventListener("click", changeToF);
