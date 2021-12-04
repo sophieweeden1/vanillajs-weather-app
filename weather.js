@@ -31,7 +31,7 @@ function displayWeather(response) {
   //Update current temperature in C
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
-  mainTempDisplay.innerHTML = `${actualTemp}`;
+  mainTempDisplay.innerHTML = `${actualTemp}°c`;
   celsiusValue = mainTempDisplay.innerHTML;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
@@ -63,7 +63,7 @@ function displayUserWeather(response) {
   //Update current temperature in C
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
-  mainTempDisplay.innerHTML = `${actualTemp}`;
+  mainTempDisplay.innerHTML = `${actualTemp}°c`;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
   let mainIcon = document.querySelector("#main-weather-icon");
@@ -117,18 +117,14 @@ let celsiusValue = null;
 function changeToC(event) {
   event.preventDefault();
   let celsiusTemp = document.querySelector("#actual-temp");
-  celsiusTemp.innerHTML = Math.round(celsiusValue);
-  let units = document.querySelector("temperature-unit");
-  units.innerHTML = "ºc";
+  celsiusTemp.innerHTML = `${Math.round(celsiusValue)}°c`;
 }
 
 function changeToF(event) {
   event.preventDefault();
   let fahrenheitTemp = (celsiusValue * 9) / 5 + 32;
   let mainTemperature = document.querySelector("#actual-temp");
-  mainTemperature.innerHTML = Math.round(fahrenheitTemp);
-  let units = document.querySelector("temperature-unit");
-  units.innerHTML = "ºf";
+  mainTemperature.innerHTML = `${Math.round(fahrenheitTemp)}°f`;
 }
 let celciusButton = document.querySelector("#celcius-button");
 celciusButton.addEventListener("click", changeToC);
