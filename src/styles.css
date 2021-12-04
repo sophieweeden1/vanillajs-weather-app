@@ -67,6 +67,10 @@ button {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.min-temp {
+  color: #b2b1b9;
+}
+
 .weather-icon {
   font-size: 50px;
   color: #fff;
