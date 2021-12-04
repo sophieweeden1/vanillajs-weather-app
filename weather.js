@@ -118,6 +118,8 @@ function changeToC(event) {
   event.preventDefault();
   let celsiusTemp = document.querySelector("#actual-temp");
   celsiusTemp.innerHTML = Math.round(celsiusValue);
+  let units = document.querySelector("temperature-unit");
+  units.innerHTML = "ºc";
 }
 
 function changeToF(event) {
@@ -125,6 +127,8 @@ function changeToF(event) {
   let fahrenheitTemp = (celsiusValue * 9) / 5 + 32;
   let mainTemperature = document.querySelector("#actual-temp");
   mainTemperature.innerHTML = Math.round(fahrenheitTemp);
+  let units = document.querySelector("temperature-unit");
+  units.innerHTML = "ºf";
 }
 let celciusButton = document.querySelector("#celcius-button");
 celciusButton.addEventListener("click", changeToC);
