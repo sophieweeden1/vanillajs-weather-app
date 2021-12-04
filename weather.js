@@ -21,48 +21,16 @@ if (minutes < 10) {
 let title = document.querySelector(".main-date");
 title.innerHTML = `${day}, ${hour}:${minutes}`;
 
-//Displays weather for London on page load
+//Adds user's city input to the page + fetch weather info from API
 
 function displayWeather(response) {
   //Update main city name
-  console.log(response.data);
   let cityName = document.querySelector("#city");
   cityName.innerHTML = response.data.name;
   //Update current temperature in C
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
-  mainTempDisplay.innerHTML = `${actualTemp}°c`;
-  //Update weather icon
-  let iconCode = response.data.weather[0].icon;
-  let mainIcon = document.querySelector("#main-weather-icon");
-  mainIcon.src = `https://openweathermap.org/img/w/${iconCode}.png`;
-
-  //Update description
-  let apiDescription = response.data.weather[0].description;
-  let description = document.querySelector(".description");
-  description.innerHTML = `${apiDescription}`;
-  //Update humidity
-  let humidityDisplay = document.querySelector(".humidity");
-  humidityDisplay.innerHTML = `Humidity: ${response.data.main.humidity} %`;
-  //Update Wind
-  let windDisplay = document.querySelector(".wind");
-  windDisplay.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
-}
-let apiKey = "1ba1100ec11f44947f639237235127ac";
-let units = "metric";
-let url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=${units}`;
-axios.get(url).then(displayWeather);
-
-//Adds user's city input to the page + fetch weather info from API
-
-function displayUserWeather(response) {
-  //Update main city name
-  let cityName = document.querySelector("#city");
-  cityName.innerHTML = response.data.name;
-  //Update current temperature in C
-  let actualTemp = Math.round(response.data.main.temp);
-  let mainTempDisplay = document.querySelector("#actual-temp");
-  mainTempDisplay.innerHTML = `${actualTemp}°c`;
+  mainTempDisplay.innerHTML = `${actualTemp}°C`;
   celsiusValue = actualTemp;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
@@ -75,23 +43,30 @@ function displayUserWeather(response) {
   //Update humidity
   let humidityDisplay = document.querySelector(".humidity");
   humidityDisplay.innerHTML = `Humidity: ${response.data.main.humidity} %`;
-  //Update Wind
+  //Update wind speed
   let windDisplay = document.querySelector(".wind");
   windDisplay.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
 }
 
 //API call on user search
-function search(event) {
-  event.preventDefault();
+function search(city) {
   let apiKey = "1ba1100ec11f44947f639237235127ac";
   let units = "metric";
-  let city = document.querySelector("#userinput").value;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-  axios.get(url).then(displayUserWeather);
+  axios.get(url).then(displayWeather);
 }
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#userinput");
+  search(cityInputElement.value);
+}
+
 let submitButton = document.querySelector("#submit-button");
-submitButton.addEventListener("click", search);
+submitButton.addEventListener("click", handleSubmit);
+
+search("London");
 
 //Use current location button API call
 function searchPosition(position) {
