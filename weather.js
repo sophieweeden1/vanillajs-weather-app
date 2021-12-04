@@ -23,7 +23,15 @@ title.innerHTML = `${day}, ${hour}:${minutes}`;
 
 //Adds user's city input to the page + fetch weather info from API
 function displayForecast(response) {
-  console.log(response.data);
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("forecast");
+  forecastElement.innerHTML = `
+            <div class="col-sm forecast-column">
+              <i class="fas fa-cloud-sun weather-icon"></i>
+              <p>Tues</p>
+              <span class="max-temp">18°</span> <span class="min-temp">7°</span>
+            </div>
+          </div>`;
 }
 
 function getForecast(coordinates) {

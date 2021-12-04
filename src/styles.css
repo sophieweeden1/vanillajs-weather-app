@@ -68,7 +68,7 @@ button {
 }
 
 .min-temp {
-  color: #687980;
+  color: #fff;
 }
 
 .weather-icon {
@@ -88,5 +88,6 @@ button {
 }
 
 .github {
+  display: block;
   text-align: center;
 }
