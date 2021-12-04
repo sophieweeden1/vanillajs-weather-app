@@ -24,14 +24,28 @@ title.innerHTML = `${day}, ${hour}:${minutes}`;
 //Adds user's city input to the page + fetch weather info from API
 function displayForecast(response) {
   console.log(response.data.daily);
-  let forecastElement = document.querySelector("forecast");
-  forecastElement.innerHTML = `
+  let forecastData = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHtml = `<div class="row weekdays" id="forecast">`;
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
             <div class="col-sm forecast-column">
               <i class="fas fa-cloud-sun weather-icon"></i>
-              <p>Tues</p>
-              <span class="max-temp">18°</span> <span class="min-temp">7°</span>
-            </div>
-          </div>`;
+              <p>${day}</p>
+              <span class="max-temp">${Math.round(
+                forecastData[0].temp.max
+              )}°</span> <span class="min-temp">${Math.round(
+        forecastData[0].temp.min
+      )}°</span>
+            </div>`;
+  });
+
+  forecastHtml = forecastHtml + `</div>`;
+  forecastElement.innerHTML = forecastHtml;
 }
 
 function getForecast(coordinates) {
