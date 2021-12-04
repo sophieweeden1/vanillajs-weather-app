@@ -32,7 +32,6 @@ function displayWeather(response) {
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
   mainTempDisplay.innerHTML = `${actualTemp}°c`;
-  celsiusValue = actualTemp;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
   let mainIcon = document.querySelector("#main-weather-icon");
@@ -64,6 +63,7 @@ function displayUserWeather(response) {
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
   mainTempDisplay.innerHTML = `${actualTemp}°c`;
+  celsiusValue = actualTemp;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
   let mainIcon = document.querySelector("#main-weather-icon");
@@ -80,7 +80,7 @@ function displayUserWeather(response) {
   windDisplay.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
 }
 
-//API call
+//API call on user search
 function search(event) {
   event.preventDefault();
   let apiKey = "1ba1100ec11f44947f639237235127ac";
@@ -117,14 +117,14 @@ let celsiusValue = null;
 function changeToC(event) {
   event.preventDefault();
   let celsiusTemp = document.querySelector("#actual-temp");
-  celsiusTemp.innerHTML = `${Math.round(celsiusValue)}°c`;
+  celsiusTemp.innerHTML = `${Math.round(celsiusValue)}°C`;
 }
 
 function changeToF(event) {
   event.preventDefault();
   let fahrenheitTemp = (celsiusValue * 9) / 5 + 32;
   let mainTemperature = document.querySelector("#actual-temp");
-  mainTemperature.innerHTML = `${Math.round(fahrenheitTemp)}°f`;
+  mainTemperature.innerHTML = `${Math.round(fahrenheitTemp)}°F`;
 }
 let celciusButton = document.querySelector("#celcius-button");
 celciusButton.addEventListener("click", changeToC);
