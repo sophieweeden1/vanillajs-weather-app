@@ -32,7 +32,7 @@ function displayWeather(response) {
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
   mainTempDisplay.innerHTML = `${actualTemp}°c`;
-  celsiusValue = mainTempDisplay.innerHTML;
+  celsiusValue = actualTemp;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
   let mainIcon = document.querySelector("#main-weather-icon");
