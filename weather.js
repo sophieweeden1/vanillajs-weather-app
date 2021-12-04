@@ -32,6 +32,7 @@ function displayWeather(response) {
   let actualTemp = Math.round(response.data.main.temp);
   let mainTempDisplay = document.querySelector("#actual-temp");
   mainTempDisplay.innerHTML = `${actualTemp}`;
+  celsiusValue = mainTempDisplay.innerHTML;
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
   let mainIcon = document.querySelector("#main-weather-icon");
@@ -111,17 +112,22 @@ let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", getCurrentLocation);
 
 // Celcius and Fahrenheit buttons conversion functionality
+let celsiusValue = null;
 
 function changeToC(event) {
   event.preventDefault();
+  alert("It works");
 }
 
 function changeToF(event) {
   event.preventDefault();
-  mainTempDisplay.innerHTML.value * 1.8 + 32;
+  alert("It works");
+  let fahrenheitTemp = (celsiusValue * 9) / 5 + 32;
+  let mainTemperature = document.querySelector("#actual-temp");
+  mainTemperature.innerHTML = Math.round(fahrenheitTemp);
 }
-let celciusButton = document.querySelector("#celcius");
+let celciusButton = document.querySelector("#celcius-button");
 celciusButton.addEventListener("click", changeToC);
 
-let fahrenheitButton = document.querySelector("#fahrenheit");
+let fahrenheitButton = document.querySelector("#fahrenheit-button");
 fahrenheitButton.addEventListener("click", changeToF);

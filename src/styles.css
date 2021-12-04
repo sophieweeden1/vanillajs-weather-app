@@ -57,10 +57,9 @@ button {
   line-height: 1;
 }
 
-.weathericon-large {
-  font-size: 80px;
-  color: #fff;
-  margin-bottom: 20px;
+#main-weather-icon {
+  width: 100px;
+  height: auto;
 }
 
 .temp {
