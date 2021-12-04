@@ -116,12 +116,12 @@ let celsiusValue = null;
 
 function changeToC(event) {
   event.preventDefault();
-  alert("It works");
+  let celsiusTemp = document.querySelector("#actual-temp");
+  celsiusTemp.innerHTML = Math.round(celsiusValue);
 }
 
 function changeToF(event) {
   event.preventDefault();
-  alert("It works");
   let fahrenheitTemp = (celsiusValue * 9) / 5 + 32;
   let mainTemperature = document.querySelector("#actual-temp");
   mainTemperature.innerHTML = Math.round(fahrenheitTemp);
