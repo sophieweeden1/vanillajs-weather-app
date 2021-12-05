@@ -23,23 +23,25 @@ title.innerHTML = `${day}, ${hour}:${minutes}`;
 
 //Adds user's city input to the page + fetch weather info from API
 function displayForecast(response) {
-  console.log(response.data.daily);
+  // console.log(response.data.daily);
   let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHtml = `<div class="row weekdays" id="forecast">`;
-  let days = ["Sat", "Sun", "Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
+
+  forecastData.forEach(function (forecastDay) {
     forecastHtml =
       forecastHtml +
       `
             <div class="col-sm forecast-column">
-              <i class="fas fa-cloud-sun weather-icon"></i>
-              <p>${day}</p>
+          <img src= "https://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png" width="40"/>
+              <p>${forecastDay.dt}</p>
               <span class="max-temp">${Math.round(
-                forecastData[0].temp.max
+                [forecastDay].temp.max
               )}°</span> <span class="min-temp">${Math.round(
-        forecastData[0].temp.min
+        [forecastDay].temp.min
       )}°</span>
             </div>`;
   });
