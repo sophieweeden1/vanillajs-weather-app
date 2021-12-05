@@ -19,7 +19,7 @@ if (minutes < 10) {
 }
 
 let title = document.querySelector(".main-date");
-title.innerHTML = `${day}, ${hour}:${minutes}`;
+title.innerHTML = `Last updated: ${day}, ${hour}:${minutes}`;
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
