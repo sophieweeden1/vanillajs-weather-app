@@ -23,32 +23,33 @@ title.innerHTML = `${day}, ${hour}:${minutes}`;
 
 //Adds user's city input to the page + fetch weather info from API
 function displayForecast(response) {
-  let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.daily;
 
-  let forecastHtml = `<div class="row weekdays" id="forecast">`;
+  let forecastHTML = `<div class="row weekdays" id="forecast">`;
 
-  forecastData.forEach(function (forecastDay, index) {
+  forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
-      forecastHtml =
-        forecastHtml +
+      forecastHTML =
+        forecastHTML +
         `
             <div class="col-sm forecast-column">
           <img src= "https://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
-          }@2x.png" width="40"/>
+          }@2x.png" width="60"/>
               <p>${forecastDay.dt}</p>
               <span class="max-temp">${Math.round(
-                [forecastDay].temp.max
+                forecastDay.temp.max
               )}°</span> <span class="min-temp">${Math.round(
-          [forecastDay].temp.min
+          forecastDay.temp.min
         )}°</span>
             </div>`;
     }
   });
 
-  forecastHtml = forecastHtml + `</div>`;
-  forecastElement.innerHTML = forecastHtml;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
 }
 
 function getForecast(coordinates) {
@@ -71,7 +72,7 @@ function displayWeather(response) {
   //Update weather icon
   let iconCode = response.data.weather[0].icon;
   let mainIcon = document.querySelector("#main-weather-icon");
-  mainIcon.src = `https://openweathermap.org/img/w/${iconCode}.png`;
+  mainIcon.src = `https://openweathermap.org/img/wn/${iconCode}.png`;
   //Update description
   let apiDescription = response.data.weather[0].description;
   let description = document.querySelector(".description");
