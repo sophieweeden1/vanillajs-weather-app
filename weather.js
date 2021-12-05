@@ -29,7 +29,8 @@ function displayForecast(response) {
 
   let forecastHtml = `<div class="row weekdays" id="forecast">`;
 
-  forecastData.forEach(function (forecastDay) {
+  forecastData.forEach(function (forecastDay, index) 
+  { if (index < 5){
     forecastHtml =
       forecastHtml +
       `
@@ -47,8 +48,8 @@ function displayForecast(response) {
   });
 
   forecastHtml = forecastHtml + `</div>`;
-  forecastElement.innerHTML = forecastHtml;
-}
+  forecastElement.innerHTML = forecastHtml; } }
+
 
 function getForecast(coordinates) {
   let apiKey = "1ba1100ec11f44947f639237235127ac";
