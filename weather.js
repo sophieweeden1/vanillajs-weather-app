@@ -23,17 +23,16 @@ title.innerHTML = `${day}, ${hour}:${minutes}`;
 
 //Adds user's city input to the page + fetch weather info from API
 function displayForecast(response) {
-  // console.log(response.data.daily);
   let forecastData = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHtml = `<div class="row weekdays" id="forecast">`;
 
-  forecastData.forEach(function (forecastDay, index) 
-  { if (index < 5){
-    forecastHtml =
-      forecastHtml +
-      `
+  forecastData.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
             <div class="col-sm forecast-column">
           <img src= "https://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
@@ -42,14 +41,15 @@ function displayForecast(response) {
               <span class="max-temp">${Math.round(
                 [forecastDay].temp.max
               )}°</span> <span class="min-temp">${Math.round(
-        [forecastDay].temp.min
-      )}°</span>
+          [forecastDay].temp.min
+        )}°</span>
             </div>`;
+    }
   });
 
   forecastHtml = forecastHtml + `</div>`;
-  forecastElement.innerHTML = forecastHtml; } }
-
+  forecastElement.innerHTML = forecastHtml;
+}
 
 function getForecast(coordinates) {
   let apiKey = "1ba1100ec11f44947f639237235127ac";
